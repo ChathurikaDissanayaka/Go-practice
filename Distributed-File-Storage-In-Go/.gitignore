@@ -24,7 +24,7 @@ vendor/
 
 # Go specific files
 # Compiled binary for packages and commands
-/bin/
+bin/
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
