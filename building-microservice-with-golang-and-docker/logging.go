@@ -11,6 +11,12 @@ type loggingService struct {
 	next PriceFetcher
 }
 
+func NewLoggingService(next PriceFetcher) PriceFetcher {
+	return &loggingService{
+		next: next,
+	}
+}
+
 func (s *loggingService) FetchPrice(ctx context.Context, ticker string) (price float64, err error) {
 	defer func(begin time.Time) {
 		logrus.WithFields(logrus.Fields{
@@ -19,4 +25,6 @@ func (s *loggingService) FetchPrice(ctx context.Context, ticker string) (price f
 			"price": price,
 		}).Info("fetchPrice")
 	}(time.Now())
+
+	return s.next.FetchPrice(ctx, ticker)
 }
