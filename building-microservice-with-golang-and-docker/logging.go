@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"time"
+
+	"github.com/sirupsen/logrus"
 )
 
 type loggingService struct {
@@ -11,8 +13,10 @@ type loggingService struct {
 
 func (s *loggingService) FetchPrice(ctx context.Context, ticker string) (price float64, err error) {
 	defer func(begin time.Time) {
-
+		logrus.WithFields(logrus.Fields{
+			"took": time.Since(begin),
+			"err": err,
+			"price": price,
+		}).Info("fetchPrice")
 	}(time.Now())
 }
-
-go mod init github.com/ChathurikaDissanayaka/building-microservice-with-golang-and-docker  
