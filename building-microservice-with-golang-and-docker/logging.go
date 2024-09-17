@@ -14,3 +14,5 @@ func (s *loggingService) FetchPrice(ctx context.Context, ticker string) (price f
 
 	}(time.Now())
 }
+
+go mod init github.com/ChathurikaDissanayaka/building-microservice-with-golang-and-docker  
